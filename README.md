@@ -1,7 +1,3 @@
 # jquery-sortable-draggable
 
-Just copy and paste the html file!
-
-## License
-
-Licensed under MIT
+Just a useful snippet of code, [check..](https://orsifrancesco.github.io/jquery-sortable-draggable/)
