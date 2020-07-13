@@ -170,7 +170,7 @@
 		
 		function loadImage(imgUrl, id) {
 			let newImg = new Image;
-			newImg.onload = function() { document.querySelector(`div[data-id="${id}"]`).classList.remove('load'); }
+			newImg.onload = function() { setTimeout(function() { document.querySelector(`div[data-id="${id}"]`).classList.remove('load'); }, 500); }
 			newImg.src = imgUrl;
 		}
 
