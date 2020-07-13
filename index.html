@@ -63,7 +63,32 @@
 			cursor: grab;
 			cursor: -moz-grab;
 			cursor: -webkit-grab;
+			position: relative;
+			overflow: hidden;
 
+		}
+		
+		#magicGallery .gallery div.load:after {
+		
+			opacity: 1;
+			visibility: visible;
+		
+		}
+		
+		#magicGallery .gallery div:after {
+		
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 10;
+			background-color: #fff;
+			position: absolute;
+			transition: .3s;
+			content: '';
+			opacity: 0;
+			visibility: hidden;
+		
 		}
 
 		#magicGallery .gallery div:active {
@@ -142,6 +167,12 @@
 				src: 'https://live.staticflickr.com/65535/49869426863_69197562d8_m.jpg'
 			}
 		];
+		
+		function loadImage(imgUrl, id) {
+			let newImg = new Image;
+			newImg.onload = function() { document.querySelector(`div[data-id="${id}"]`).classList.remove('load'); }
+			newImg.src = imgUrl;
+		}
 
 		function render(obj) {
 
@@ -149,9 +180,8 @@
 			let html = ``;
 
 			images.map((image) => {
-
-				html += `<div data-id="${image.id}" data-src="${image.src}" style="background-image: url(${image.src});"></div>`
-
+				loadImage(image.src, image.id);
+				html += `<div class="load" data-id="${image.id}" data-src="${image.src}" style="background-image: url(${image.src});"></div>`;
 			});
 
 			const wrap = document.querySelector(container);
